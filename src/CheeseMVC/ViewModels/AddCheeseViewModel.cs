@@ -1,4 +1,5 @@
-﻿using CheeseMVC.Models;
+﻿
+using CheeseMVC.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -11,37 +12,37 @@ namespace CheeseMVC.ViewModels
     public class AddCheeseViewModel
     {
         [Required]
-        [Display(Name = "Cheese Name")]
+        [Display( Name = "Cheese Name" )]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "You must give your cheese a description")]
+        [Required( ErrorMessage = "You must give your cheese a description" )]
         public string Description { get; set; }
 
-        public CheeseType Type { get; set; }
+        [Required]
+        [Display( Name = "Category" )]
+        public int CategoryID { get; set; }
+
+        public List<SelectListItem> Categories { get; set; }
+
+        public AddCheeseViewModel() : base() { }
+
 
         public List<SelectListItem> CheeseTypes { get; set; }
 
-        public AddCheeseViewModel() {
+        public AddCheeseViewModel( IEnumerable<CheeseCategory> categories )
+        {
 
-            CheeseTypes = new List<SelectListItem>();
 
-            // <option value="0">Hard</option>
-            CheeseTypes.Add(new SelectListItem {
-                Value = ((int) CheeseType.Hard).ToString(),
-                Text = CheeseType.Hard.ToString()
-            });
+            Categories = new List<SelectListItem>();
 
-            CheeseTypes.Add(new SelectListItem
+            foreach ( var cat in categories )
             {
-                Value = ((int)CheeseType.Soft).ToString(),
-                Text = CheeseType.Soft.ToString()
-            });
-
-            CheeseTypes.Add(new SelectListItem
-            {
-                Value = ((int)CheeseType.Fake).ToString(),
-                Text = CheeseType.Fake.ToString()
-            });
+                Categories.Add( new SelectListItem
+                {
+                    Value = ( ( int ) cat.ID ).ToString() ,
+                    Text = cat.Name.ToString()
+                } );
+            }
 
         }
     }

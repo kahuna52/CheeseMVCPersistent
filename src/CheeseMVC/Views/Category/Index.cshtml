@@ -1,0 +1,20 @@
+﻿@model IList<CheeseMVC.Models.CheeseCategory>
+
+@{
+    ViewData [ "Title" ] = "Index";
+}
+
+@if ( Model.Count == 0 )
+{
+    <p>No cheese categories yet!</p>
+
+}
+
+    <ul>
+        @foreach ( var category in Model )
+        {
+            <li>@category.Name</li>
+            
+        }
+    </ul>
+<p><a asp-action="Add">Add Category</a></p>

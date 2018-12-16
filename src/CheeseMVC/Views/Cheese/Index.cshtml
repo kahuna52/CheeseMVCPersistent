@@ -1,4 +1,4 @@
-﻿@model List<CheeseMVC.Models.Cheese>
+﻿@model IList<CheeseMVC.Models.Cheese>
 
 <h1>@ViewBag.Title</h1>
 
@@ -7,22 +7,22 @@
     <tr>
         <th>Name</th>
         <th>Description</th>
-        <td>Type</td>
+        <td>Category</td>
     </tr>
 
-    @foreach (var cheese in Model)
+    @foreach ( var cheese in Model )
     {
         <tr>
             <td>@cheese.Name</td>
             <td>@cheese.Description</td>
-            <td>@cheese.Type</td>
+            <td>@cheese.Category.Name</td>
         </tr>
     }
 </table>
 
-@if (Model.Count == 0)
+@if ( Model.Count == 0 )
 {
     <p>No cheeses yet!</p>
 }
 
-<p><a asp-controller="Cheese" asp-action="Add">Add Cheese</a></p>
+<a asp-controller="Cheese" asp-action="Add">Add Cheese</a>|<a asp-controller="Cheese" asp-action="Remove">Remove Cheese</a>
