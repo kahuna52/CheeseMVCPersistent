@@ -10,7 +10,7 @@ namespace CheeseMVC.ViewModels
     public class AddCategoryViewModel
     {
         [Required]
-        [Display( Name = "CategoryName" )]
+        [Display( Name = "Category Name" )]
         public string Name { get; set; }
     }
 }
